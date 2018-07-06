@@ -15,6 +15,9 @@ import (
 	"github.com/concourse/atc"
 	"github.com/tedsuo/rata"
 	"github.com/vito/go-sse/sse"
+	"encoding/base64"
+	"fmt"
+	"os"
 )
 
 //go:generate counterfeiter . Connection
@@ -51,19 +54,25 @@ type connection struct {
 }
 
 func NewConnection(apiURL string, httpClient *http.Client, tracing bool) Connection {
+	fmt.Println("*** NEW CONNECTION ***")
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
 
 	apiURL = strings.TrimRight(apiURL, "/")
 
-	return &connection{
+	ret := &connection{
 		url:        apiURL,
 		httpClient: httpClient,
 		tracing:    tracing,
 
 		requestGenerator: rata.NewRequestGenerator(apiURL, atc.Routes),
 	}
+
+	ret.requestGenerator.Header.Add("Authorization", "Basic "+basicAuth(os.Getenv("CI_USER"), os.Getenv("CI_PASSWORD")))
+
+	return ret
+
 }
 
 func (connection *connection) URL() string {
@@ -227,4 +236,9 @@ func (connection *connection) populateResponse(response *http.Response, returnRe
 	}
 
 	return nil
+}
+
+func basicAuth(username, password string) string {
+	auth := username + ":" + password
+	return base64.StdEncoding.EncodeToString([]byte(auth))
 }
