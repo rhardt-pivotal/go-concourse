@@ -14,8 +14,8 @@
       <file leaf-file-name="connection.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/internal/connection.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+            <state relative-caret-position="594">
+              <caret line="229" column="1" lean-forward="true" selection-start-line="229" selection-start-column="1" selection-end-line="229" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -66,11 +66,6 @@
             <path>
               <item name="concourse" type="b2602c69:ProjectViewProjectNode" />
               <item name="concourse" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="concourse" type="b2602c69:ProjectViewProjectNode" />
-              <item name="concourse" type="462c0819:PsiDirectoryNode" />
-              <item name="internal" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -133,8 +128,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/internal/connection.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+        <state relative-caret-position="594">
+          <caret line="229" column="1" lean-forward="true" selection-start-line="229" selection-start-column="1" selection-end-line="229" selection-end-column="1" />
           <folding />
         </state>
       </provider>
