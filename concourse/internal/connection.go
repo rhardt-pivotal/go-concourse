@@ -85,6 +85,8 @@ func (connection *connection) Send(passedRequest Request, passedResponse *Respon
 		return err
 	}
 
+	req.Header.Add("Authorization", "Bearer "+connection.token)
+
 	if connection.tracing {
 		b, err := httputil.DumpRequestOut(req, true)
 		if err != nil {
