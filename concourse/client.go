@@ -36,9 +36,9 @@ type client struct {
 	connection internal.Connection
 }
 
-func NewClient(apiURL string, httpClient *http.Client, tracing bool) Client {
+func NewClient(apiURL string, httpClient *http.Client, tracing bool, token string) Client {
 	return &client{
-		connection: internal.NewConnection(apiURL, httpClient, tracing),
+		connection: internal.NewConnection(apiURL, httpClient, tracing, token),
 	}
 }
 

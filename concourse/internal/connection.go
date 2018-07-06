@@ -23,6 +23,7 @@ type Connection interface {
 	URL() string
 	HTTPClient() *http.Client
 
+
 	Send(request Request, response *Response) error
 	ConnectToEventStream(request Request) (*sse.EventSource, error)
 }
@@ -46,11 +47,12 @@ type connection struct {
 	url        string
 	httpClient *http.Client
 	tracing    bool
+	token      string
 
 	requestGenerator *rata.RequestGenerator
 }
 
-func NewConnection(apiURL string, httpClient *http.Client, tracing bool) Connection {
+func NewConnection(apiURL string, httpClient *http.Client, tracing bool, token string) Connection {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
@@ -61,6 +63,7 @@ func NewConnection(apiURL string, httpClient *http.Client, tracing bool) Connect
 		url:        apiURL,
 		httpClient: httpClient,
 		tracing:    tracing,
+		token: 		token,
 
 		requestGenerator: rata.NewRequestGenerator(apiURL, atc.Routes),
 	}
@@ -75,6 +78,8 @@ func (connection *connection) HTTPClient() *http.Client {
 }
 
 func (connection *connection) Send(passedRequest Request, passedResponse *Response) error {
+	log.Println("*** SEND ****")
+	log.Printf("Token: %s", connection.token)
 	req, err := connection.createHTTPRequest(passedRequest)
 	if err != nil {
 		return err
